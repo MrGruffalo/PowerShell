@@ -7,7 +7,7 @@ foreach ($Task in $Tasks) {
     Register-ScheduledTask : Cannot create a file when that file already exists. #>
     $TaskName = "$Task"
     $TaskDescription = "$Task does a thing"
-    $TaskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy ByPass -File Test2.ps1 $Task" -WorkingDirectory "C:\Users\David\Documents\"
+    $TaskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy ByPass -File Test2.ps1 $Task" -WorkingDirectory "C:\"
     $TaskPrincipal = New-ScheduledTaskPrincipal -UserId $User -LogonType Password -RunLevel Highest
     $TaskTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 1)
     $NewScheduledTask = New-ScheduledTask -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Description $TaskDescription
